@@ -22,7 +22,7 @@ class TestComponent {
 
     val cardRowModifier = Modifier
         .padding(start = 16.dp, bottom = 8.dp, end = 16.dp, top = 8.dp)
-        .fillMaxWidth()git
+        .fillMaxWidth()
     val cardBackground: Color = Color(0xFF222222)
     val boxModifier = Modifier.size(100.dp, 30.dp).padding(8.dp)
 
