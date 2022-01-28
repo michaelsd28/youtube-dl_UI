@@ -19,7 +19,6 @@ import components.DownloadQueue.DownloadRow
 
 class TestComponent {
 
-
     val cardRowModifier = Modifier
         .padding(start = 16.dp, bottom = 8.dp, end = 16.dp, top = 8.dp)
         .fillMaxWidth()
