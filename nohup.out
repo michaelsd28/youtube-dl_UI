@@ -1,0 +1,71 @@
+2022-01-17 17:54:34,980 [   1742]   WARN - l.NotificationGroupManagerImpl - Notification group CodeWithMe is already registered (group=com.intellij.notification.NotificationGroup@1fdaa3a9). Plugin descriptor: PluginDescriptor(name=Code With Me, id=com.jetbrains.codeWithMe, descriptorPath=plugin.xml, path=~/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/213.6461.79/plugins/cwm-plugin, version=213.6461.79, package=null, isBundled=true) 
+Info  | RdCoroutineScope          | 11:JobScheduler FJ pool 1/11 | RdCoroutineHost overridden 
+2022-01-17 17:54:38,322 [   5084]   WARN - ge.ExternalProjectsDataStorage - Cannot find class `org.jetbrains.kotlin.idea.gradle.configuration.KotlinGradleProjectData` 
+2022-01-17 17:54:38,323 [   5085]   WARN - ge.ExternalProjectsDataStorage - Cannot find class `org.jetbrains.kotlin.idea.gradle.configuration.KotlinGradleSourceSetData` 
+2022-01-17 17:54:38,323 [   5085]   WARN - ge.ExternalProjectsDataStorage - Cannot find class `org.jetbrains.kotlin.idea.gradle.configuration.KotlinGradleSourceSetData` 
+2022-01-17 17:54:38,388 [   5150]   WARN - ge.ExternalProjectsDataStorage - Cannot find class `org.jetbrains.kotlin.android.synthetic.idea.AndroidExtensionProperties` 
+2022-01-17 17:55:41,044 [  67806]   WARN - vdmanager.AvdManagerConnection - No Android SDK Found 
+Exception in thread "DisconnectableInputStream source reader" Exception in thread "DisconnectableInputStream source reader" org.gradle.api.UncheckedIOException: java.io.IOException: Stream closed
+	at org.gradle.internal.UncheckedException.throwAsUncheckedException(UncheckedException.java:61)
+	at org.gradle.internal.UncheckedException.throwAsUncheckedException(UncheckedException.java:41)
+	at org.gradle.util.internal.DisconnectableInputStream$1.run(DisconnectableInputStream.java:127)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: java.io.IOException: Stream closed
+	at java.base/java.io.BufferedInputStream.getBufIfOpen(BufferedInputStream.java:176)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:342)
+	at org.gradle.util.internal.DisconnectableInputStream$1.run(DisconnectableInputStream.java:98)
+	... 1 more
+org.gradle.api.UncheckedIOException: java.nio.channels.AsynchronousCloseException
+	at org.gradle.internal.UncheckedException.throwAsUncheckedException(UncheckedException.java:61)
+	at org.gradle.internal.UncheckedException.throwAsUncheckedException(UncheckedException.java:41)
+	at org.gradle.util.internal.DisconnectableInputStream$1.run(DisconnectableInputStream.java:127)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: java.nio.channels.AsynchronousCloseException
+	at java.base/java.nio.channels.spi.AbstractInterruptibleChannel.end(AbstractInterruptibleChannel.java:202)
+	at java.base/sun.nio.ch.SourceChannelImpl.endRead(SourceChannelImpl.java:241)
+	at java.base/sun.nio.ch.SourceChannelImpl.read(SourceChannelImpl.java:259)
+	at java.base/sun.nio.ch.ChannelInputStream.read(ChannelInputStream.java:59)
+	at java.base/sun.nio.ch.ChannelInputStream.read(ChannelInputStream.java:107)
+	at java.base/sun.nio.ch.ChannelInputStream.read(ChannelInputStream.java:101)
+	at java.base/java.io.BufferedInputStream.read1(BufferedInputStream.java:290)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:351)
+	at org.gradle.util.internal.DisconnectableInputStream$1.run(DisconnectableInputStream.java:98)
+	... 1 more
+2022-01-17 17:57:27,915 [ 174677]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: appearance for id: AtomSelectConfig 
+2022-01-17 17:57:27,916 [ 174678]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: appearance for id: MTConfigurable 
+2022-01-17 17:57:27,917 [ 174679]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: appearance for id: MTCustomThemeConfigurable 
+2022-01-17 17:57:27,923 [ 174685]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: language for id: preferences.language.Kotlin.scripting 
+2022-01-17 17:57:27,929 [ 174691]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: appearance for id: MTProjectConfigurable 
+Already running
+2022-01-17 18:02:14,978 [ 461740]   WARN - com.intellij.util.xmlb.Binding - no accessors for org.jetbrains.idea.perforce.perforce.ConnectionId 
+2022-01-17 18:02:19,328 [   1791]   WARN - l.NotificationGroupManagerImpl - Notification group CodeWithMe is already registered (group=com.intellij.notification.NotificationGroup@217f65a4). Plugin descriptor: PluginDescriptor(name=Code With Me, id=com.jetbrains.codeWithMe, descriptorPath=plugin.xml, path=~/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/213.6461.79/plugins/cwm-plugin, version=213.6461.79, package=null, isBundled=true) 
+Info  | RdCoroutineScope          | 31:JobScheduler FJ pool 10/11 | RdCoroutineHost overridden 
+2022-01-17 18:02:23,437 [   5900]   WARN - ge.ExternalProjectsDataStorage - Cannot find class `org.jetbrains.kotlin.idea.gradle.configuration.KotlinGradleProjectData` 
+2022-01-17 18:02:23,438 [   5901]   WARN - ge.ExternalProjectsDataStorage - Cannot find class `org.jetbrains.kotlin.idea.gradle.configuration.KotlinGradleSourceSetData` 
+2022-01-17 18:02:23,438 [   5901]   WARN - ge.ExternalProjectsDataStorage - Cannot find class `org.jetbrains.kotlin.idea.gradle.configuration.KotlinGradleSourceSetData` 
+2022-01-17 18:02:23,481 [   5944]   WARN - ge.ExternalProjectsDataStorage - Cannot find class `org.jetbrains.kotlin.android.synthetic.idea.AndroidExtensionProperties` 
+2022-01-17 18:02:23,747 [   6210]   WARN - vdmanager.AvdManagerConnection - No Android SDK Found 
+2022-01-17 18:02:24,598 [   7061]   WARN - ctionSystem.impl.ActionUpdater - 449 ms to grab EDT for TabListAction#update (com.intellij.ide.actions.TabListAction) 
+2022-01-17 18:02:24,599 [   7062]   WARN - ctionSystem.impl.ActionUpdater - 451 ms to grab EDT for CWMTelephonyGroup#update (com.jetbrains.rd.platform.codeWithMe.telephony.CWMTelephonyGroup) 
+Already running
+2022-01-17 18:02:45,071 [  27534]   WARN - com.intellij.util.xmlb.Binding - no accessors for org.jetbrains.idea.perforce.perforce.ConnectionId 
+2022-01-17 18:03:01,699 [   1909]   WARN - l.NotificationGroupManagerImpl - Notification group CodeWithMe is already registered (group=com.intellij.notification.NotificationGroup@73e44c91). Plugin descriptor: PluginDescriptor(name=Code With Me, id=com.jetbrains.codeWithMe, descriptorPath=plugin.xml, path=~/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/213.6461.79/plugins/cwm-plugin, version=213.6461.79, package=null, isBundled=true) 
+Info  | RdCoroutineScope          | 30:JobScheduler FJ pool 9/11 | RdCoroutineHost overridden 
+2022-01-17 18:03:05,802 [   6012]   WARN - ge.ExternalProjectsDataStorage - Cannot find class `org.jetbrains.kotlin.idea.gradle.configuration.KotlinGradleProjectData` 
+2022-01-17 18:03:05,803 [   6013]   WARN - ge.ExternalProjectsDataStorage - Cannot find class `org.jetbrains.kotlin.idea.gradle.configuration.KotlinGradleSourceSetData` 
+2022-01-17 18:03:05,803 [   6013]   WARN - ge.ExternalProjectsDataStorage - Cannot find class `org.jetbrains.kotlin.idea.gradle.configuration.KotlinGradleSourceSetData` 
+2022-01-17 18:03:05,844 [   6054]   WARN - ge.ExternalProjectsDataStorage - Cannot find class `org.jetbrains.kotlin.android.synthetic.idea.AndroidExtensionProperties` 
+2022-01-17 18:03:06,216 [   6426]   WARN - vdmanager.AvdManagerConnection - No Android SDK Found 
+2022-01-17 18:03:07,091 [   7301]   WARN - ctionSystem.impl.ActionUpdater - 494 ms to grab EDT for TabListAction#update (com.intellij.ide.actions.TabListAction) 
+2022-01-17 18:03:07,091 [   7301]   WARN - ctionSystem.impl.ActionUpdater - 496 ms to grab EDT for CWMTelephonyGroup#update (com.jetbrains.rd.platform.codeWithMe.telephony.CWMTelephonyGroup) 
+2022-01-17 18:03:41,084 [  41294]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: appearance for id: AtomSelectConfig 
+2022-01-17 18:03:41,085 [  41295]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: appearance for id: MTConfigurable 
+2022-01-17 18:03:41,086 [  41296]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: appearance for id: MTCustomThemeConfigurable 
+2022-01-17 18:03:41,092 [  41302]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: language for id: preferences.language.Kotlin.scripting 
+2022-01-17 18:03:41,096 [  41306]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: appearance for id: MTProjectConfigurable 
+2022-01-17 18:04:08,469 [  68679]   WARN - com.intellij.util.xmlb.Binding - no accessors for org.jetbrains.idea.perforce.perforce.ConnectionId 
+2022-01-17 18:04:09,799 [  70009]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: appearance for id: AtomSelectConfig 
+2022-01-17 18:04:09,800 [  70010]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: appearance for id: MTConfigurable 
+2022-01-17 18:04:09,800 [  70010]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: appearance for id: MTCustomThemeConfigurable 
+2022-01-17 18:04:09,800 [  70010]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: language for id: preferences.language.Kotlin.scripting 
+2022-01-17 18:04:09,801 [  70011]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: appearance for id: MTProjectConfigurable 

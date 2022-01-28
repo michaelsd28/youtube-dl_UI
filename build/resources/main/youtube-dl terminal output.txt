@@ -1,0 +1,47 @@
+[youtube] DKjFn5LIuCA: Downloading webpage
+[download] Resuming download at byte 64512
+[download] Destination: La Manatí Juanita En Una Isla Salvaje [Editorial] _ Antinoti-DKjFn5LIuCA.mp4
+
+[download]   0.1% of 121.67MiB at  5.66KiB/s ETA 06:06:27
+[download]   0.1% of 121.67MiB at 16.96KiB/s ETA 02:02:22
+[download]   0.1% of 121.67MiB at 39.52KiB/s ETA 52:30
+[download]   0.1% of 121.67MiB at 84.55KiB/s ETA 24:32
+[download]   0.1% of 121.67MiB at 60.83KiB/s ETA 34:06
+[download]   0.1% of 121.67MiB at 63.26KiB/s ETA 32:47
+[download]   0.2% of 121.67MiB at 55.38KiB/s ETA 37:26
+[download]   0.2% of 121.67MiB at 56.39KiB/s ETA 36:45
+[download]   0.2% of 121.67MiB at 56.80KiB/s ETA 36:28
+[download]   0.3% of 121.67MiB at 58.95KiB/s ETA 35:07
+[download]   0.3% of 121.67MiB at 59.85KiB/s ETA 34:34
+[download]   0.4% of 121.67MiB at 59.69KiB/s ETA 34:38
+[download]   0.4% of 121.67MiB at 58.28KiB/s ETA 35:28
+
+Process finished with exit code 130
+
+
+
+///// download 2
+[youtube] 8KFQx-mc2Ao: Downloading webpage
+[download] Destination: 'So you won't take down lies' - Alexandria Ocasio-Cortez challenges Facebook CEO-8KFQx-mc2Ao.mp4
+
+[download]   0.0% of 13.22MiB at 634.83KiB/s ETA 00:21
+[download]   0.0% of 13.22MiB at  1.60MiB/s ETA 00:08
+[download]   0.1% of 13.22MiB at 31.49KiB/s ETA 07:09
+[download]   0.1% of 13.22MiB at 67.38KiB/s ETA 03:20
+[download]   0.2% of 13.22MiB at 73.05KiB/s ETA 03:04
+[download]   0.5% of 13.22MiB at 70.84KiB/s ETA 03:10
+[download]   0.9% of 13.22MiB at 66.14KiB/s ETA 03:22
+
+
+(1) - match percentage regex
+       ...\%            //g
+
+(2) - match ETA and minutes regex
+       ETA\ .....           //g
+
+(3) - match download speed
+
+
+
+
+Process finished with exit code 130
