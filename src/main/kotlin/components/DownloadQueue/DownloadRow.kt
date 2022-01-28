@@ -8,7 +8,6 @@ import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -19,20 +18,17 @@ import androidx.compose.ui.unit.dp
 class DownloadRow {
 
 
-
-
-
     @Composable
     @Preview
     fun downloadRow(
-
+        url: String,
     ) {
 
         val initDownloadQueue = DownloadQueue(
             "001",
             remember { mutableStateOf("Download") },
             "no url",
-            "0",
+            0f,
             "0",
 
             )
@@ -45,9 +41,7 @@ class DownloadRow {
         val boxModifier = Modifier.size(100.dp, 30.dp).padding(8.dp)
 
 
-
-
-        val videoState  = remember { mutableStateOf(initDownloadQueue) }
+        val videoState = remember { mutableStateOf(initDownloadQueue) }
         TerminalCommands().downloadSimulation(videoState)
 
 //        val progressState = remember { mutableStateOf(0) }
@@ -57,16 +51,22 @@ class DownloadRow {
         Card(modifier = cardRowModifier.size(38.dp), backgroundColor = cardBackground) {
             Box(modifier = boxModifier) {
 
-                Row( verticalAlignment = Alignment.Top) {
+                Row(verticalAlignment = Alignment.Top) {
 
                     Text(
                         text = videoState.value.name.value, color = Color(0xFFFFFFFF), modifier = Modifier.weight(5f)
                     )
-                    Text(
-                        text = "150.00 k/s", color = Color(0xFFFFFFFF), modifier = Modifier.weight(1f)
-                    )
+                    videoState.value.speed?.let {
+                        Text(
+                            text = it, color = Color(0xFFFFFFFF), modifier = Modifier.weight(1f)
+                        )
+                    }
                     Box(modifier = Modifier.weight(1f).padding(start = 28.dp)) {
-                        CircularProgressIndicator(modifier = Modifier.size(20.dp))
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(20.dp),
+                            progress = videoState.value.status!!.toFloat(),
+                            color = Color(0xFFF05454)
+                        )
                     }
 
 

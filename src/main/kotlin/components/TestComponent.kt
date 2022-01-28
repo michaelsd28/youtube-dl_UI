@@ -1,11 +1,14 @@
 package components
 
+import Util.TerminalCommands
 import `Data Structure`.DownloadQueue
+import `Data Structure`.Queue
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Card
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -55,7 +58,7 @@ class TestComponent {
             "001",
             textQ,
             "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-            "completed",
+            0f,
             "100",
 
             )
@@ -63,15 +66,21 @@ class TestComponent {
 
         val textState = remember { mutableStateOf("Hello World") }
         val arrayList = remember { mutableStateListOf<DownloadQueue>() }
+        val queueList = remember { mutableStateOf(Queue()) }
 
         Column(Modifier.fillMaxSize().background(Color.Black)) {
 
             Text(text = textState.value, color = Color.White)
 
+
+
             Button(onClick = {
 
 
                 arrayList.add(downloadTest1)
+                queueList.value.enqueue(downloadTest1)
+                TerminalCommands().getVideoTitle("https://www.youtube.com/watch?v=0Vsj5OPjsUA")
+
 
 
             }) {
@@ -86,6 +95,9 @@ class TestComponent {
                 DownloadRow().downloadRow()
 //                testRow()
             }
+
+
+
 
         }
 

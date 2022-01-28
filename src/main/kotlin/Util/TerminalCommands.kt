@@ -29,6 +29,8 @@ class TerminalCommands {
 
                     state.value.name.value =str
                     state.value.remainingTime = retrieveTerminalOutput.getDownloadRemainingTime(str)
+                    state.value.speed = retrieveTerminalOutput.getDownloadSpeed(str)
+                    state.value.status = retrieveTerminalOutput.getDownloadPercentageInFloat(str)
 
                     println(retrieveTerminalOutput.getDownloadRemainingTime(str))
 
@@ -85,6 +87,10 @@ class TerminalCommands {
 
     fun getVideoTitle(url: String) {
 
+        val t2 = Thread {
+
+
+
         val rt = Runtime.getRuntime()
         val commands = arrayOf("wsl ", "-d", "Ubuntu-20.04", "bash", "-c", "youtube-dl $url --get-filename")
         val proc = rt.exec(commands)
@@ -95,17 +101,19 @@ class TerminalCommands {
 // Read the output from the command
 
 // Read the output from the command
-        var s: String? = null
-        while (stdInput.readLine().also { s = it } != null) {
-            println(s)
+        var title: String? = null
+        while (stdInput.readLine().also { title = it } != null) {
+            println(title?.substring(0, title!!.length - 16))
         }
 
         // Read any errors from the attempted command
 
 // Read any errors from the attempted command
-        while (stdError.readLine().also { s = it } != null) {
-            print(s)
+        while (stdError.readLine().also { title = it } != null) {
+            print(title)
         }
+        }
+        t2.start()
     }
 
     fun getPlaylistInfo(url: String) {

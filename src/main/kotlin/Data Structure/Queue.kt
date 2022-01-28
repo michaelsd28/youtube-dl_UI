@@ -1,37 +1,44 @@
 package `Data Structure`
 
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.snapshots.SnapshotStateList
-import com.google.gson.Gson
 
 
-data class DownloadQueue(val id: String? = null, var name: MutableState<String>, val url: String?= null, val status: String?= null, var remainingTime: String?= null)
+data class DownloadQueue(
+    val id: String? = null,
+    var name: MutableState<String>,
+    val url: String? = null,
+    var status: Float? = null,
+    var remainingTime: String? = null,
+    var speed: String? = null,
+)
 
-data class Queue (val value: DownloadQueue? = null, var next: Queue? = null){
+data class Queue(val value: DownloadQueue? = null, var next: Queue? = null) {
 
-    fun enqueue(value: DownloadQueue){
-        if (next == null){
+    fun enqueue(value: DownloadQueue) {
+        if (next == null) {
             next = Queue(value)
         } else {
             next?.enqueue(value)
         }
     }
-    fun deQueue(): Queue?{
-        return if (next == null){
+
+    fun deQueue(): Queue? {
+        return if (next == null) {
             null
         } else {
             next
         }
     }
 
-    fun print(){
+    fun print() {
         println(value)
-        if (next != null){
+        if (next != null) {
             next!!.print()
         }
     }
-    fun returnQueue(): Queue?{
-        return if (next == null){
+
+    fun returnQueue(): Queue? {
+        return if (next == null) {
             null
         } else {
             next
@@ -40,8 +47,7 @@ data class Queue (val value: DownloadQueue? = null, var next: Queue? = null){
 }
 
 
-
-fun main(){
+fun main() {
 
 //    val queue:DownloadQueue = DownloadQueue("1","test","https://www.google.com","pending","0")
 
@@ -54,8 +60,6 @@ fun main(){
 //    import Gson
 
 //    val json  = Gson().toJson(myQueue)
-
-
 
 
 //  println(json)

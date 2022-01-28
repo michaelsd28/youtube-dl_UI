@@ -57,6 +57,16 @@ class RetrieveTerminalOutput {
         return percentage?.groups?.get(0)?.value ?: "0"
     }
 
+    ///working
+    fun getDownloadPercentageInFloat(data: String): Float {
+        val percentageRegex = Regex("..[0-9]{1,3}")
+        val percentage = percentageRegex.find(data)
+        val percentageValue = percentage?.groups?.get(0)?.value?.toFloat() ?: (0f / 100)
+
+        return percentageValue/100
+    }
+
+
 
     //working
     fun getDownloadRemainingTime(data: String): String {
