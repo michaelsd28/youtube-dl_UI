@@ -38,8 +38,6 @@ fun main() = application {
                     TopBar().TopBar(windowState)
                 }
 
-
-
                     App().AppComponent()
 
 
