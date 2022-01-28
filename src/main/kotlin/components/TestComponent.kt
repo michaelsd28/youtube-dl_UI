@@ -64,8 +64,6 @@ class TestComponent {
         val textState = remember { mutableStateOf("Hello World") }
         val arrayList = remember { mutableStateListOf<DownloadQueue>() }
 
-
-
         Column(Modifier.fillMaxSize().background(Color.Black)) {
 
             Text(text = textState.value, color = Color.White)
