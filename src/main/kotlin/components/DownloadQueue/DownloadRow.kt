@@ -8,11 +8,13 @@ import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 
 class DownloadRow {
@@ -21,14 +23,14 @@ class DownloadRow {
     @Composable
     @Preview
     fun downloadRow(
-        url: String,
+        urlState: MutableState<TextFieldValue>
     ) {
 
         val initDownloadQueue = DownloadQueue(
             "001",
             remember { mutableStateOf("Download") },
             "no url",
-            0f,
+            remember { mutableStateOf(0f) },
             "0",
 
             )
@@ -64,7 +66,7 @@ class DownloadRow {
                     Box(modifier = Modifier.weight(1f).padding(start = 28.dp)) {
                         CircularProgressIndicator(
                             modifier = Modifier.size(20.dp),
-                            progress = videoState.value.status!!.toFloat(),
+                            progress = videoState.value.status!!.value.toFloat(),
                             color = Color(0xFFF05454)
                         )
                     }

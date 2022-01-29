@@ -58,7 +58,7 @@ class TestComponent {
             "001",
             textQ,
             "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-            0f,
+            remember { mutableStateOf(0f) },
             "100",
 
             )
@@ -92,8 +92,8 @@ class TestComponent {
 
             arrayList.forEach {
 
-                DownloadRow().downloadRow()
-//                testRow()
+//                DownloadRow().downloadRow()
+
             }
 
 
@@ -131,6 +131,9 @@ fun main() = application {
 
 
 }
+
+
+
 
 
 

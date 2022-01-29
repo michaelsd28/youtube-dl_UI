@@ -7,7 +7,7 @@ data class DownloadQueue(
     val id: String? = null,
     var name: MutableState<String>,
     val url: String? = null,
-    var status: Float? = null,
+    var status: MutableState<Float>?= null,
     var remainingTime: String? = null,
     var speed: String? = null,
 )

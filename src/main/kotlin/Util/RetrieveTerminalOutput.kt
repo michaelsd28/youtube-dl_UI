@@ -1,5 +1,9 @@
 package Util
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+
 class RetrieveTerminalOutput {
 
 
@@ -58,14 +62,30 @@ class RetrieveTerminalOutput {
     }
 
     ///working
-    fun getDownloadPercentageInFloat(data: String): Float {
-        val percentageRegex = Regex("..[0-9]{1,3}")
+    fun getDownloadPercentageInFloat(data: String): Float? {
+
+
+
+        val percentageRegex = Regex(".([0-9].{1,3}%)")
         val percentage = percentageRegex.find(data)
-        val percentageValue = percentage?.groups?.get(0)?.value?.toFloat() ?: (0f / 100)
+        val value =  percentage?.groups?.get(0)?.value?.replace("%","")
 
-        return percentageValue/100
+
+
+
+        if (value != null) {
+
+            println("$value this is the value divided by 100")
+        }
+
+        if (value != null) {
+            return value.toFloat() / 100
+        } else {
+            return null
+        }
+
+
     }
-
 
 
     //working
@@ -78,4 +98,24 @@ class RetrieveTerminalOutput {
     }
 
 
+    fun getVideoTitle(data: String): String? {
+
+        var firstValue: String? = ""
+
+
+        val getTitleRegex = Regex("Destination: (.*)...................")
+        val getTitle = getTitleRegex.find(data)
+
+        if (getTitle?.groupValues?.get(1) != null) {
+            firstValue = getTitle.groupValues[1]
+        }
+
+        return firstValue
+    }
+
 }
+
+
+
+
+

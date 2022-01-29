@@ -9,6 +9,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.OutlinedButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -26,20 +29,22 @@ class Download {
     //url
     ///status
     ///remaining
-//    val downloadTest:DownloadQueue = DownloadQueue(
-//        "1",
-//        "test",
-//        "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-//        "0",
-//        "0"
-//    )
+
 
 
 
 
     @Composable
     @Preview
-    fun DownloadButton(){
+    fun DownloadButton(queueList: SnapshotStateList<DownloadQueue>) {
+
+        val downloadTest:DownloadQueue = DownloadQueue(
+            "1",
+            remember { mutableStateOf("hi there") },
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            remember { mutableStateOf(0f) },
+            "0"
+        )
 
 
 
@@ -47,7 +52,7 @@ class Download {
             OutlinedButton(
                 {
 
-
+                    queueList.add(downloadTest)
 
 
                 },

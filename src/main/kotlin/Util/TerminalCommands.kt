@@ -25,16 +25,21 @@ class TerminalCommands {
             try {
 
                 while (stdInput.readLine().also { str = it } != null) {
+                    println("$str ${retrieveTerminalOutput.getDownloadPercentageInFloat(str)} this the percentage 2")
 
+                    if (retrieveTerminalOutput.getVideoTitle(str).toString() != "") {
+                        state.value.name.value = retrieveTerminalOutput.getVideoTitle(str).toString().substring(0,50)
+                    }
 
-                    state.value.name.value =str
+                    if(retrieveTerminalOutput.getDownloadPercentageInFloat(str)!= null){
+                        state.value.status!!.value = retrieveTerminalOutput.getDownloadPercentageInFloat(str)!!
+                    }
+
                     state.value.remainingTime = retrieveTerminalOutput.getDownloadRemainingTime(str)
                     state.value.speed = retrieveTerminalOutput.getDownloadSpeed(str)
-                    state.value.status = retrieveTerminalOutput.getDownloadPercentageInFloat(str)
 
-                    println(retrieveTerminalOutput.getDownloadRemainingTime(str))
 
-                    println(str)
+
                 }
 
                 while (stdError.readLine().also { str = it } != null) {
@@ -90,30 +95,31 @@ class TerminalCommands {
         val t2 = Thread {
 
 
+            val rt = Runtime.getRuntime()
+            val commands = arrayOf("wsl ", "-d", "Ubuntu-20.04", "bash", "-c", "youtube-dl $url --get-filename")
 
-        val rt = Runtime.getRuntime()
-        val commands = arrayOf("wsl ", "-d", "Ubuntu-20.04", "bash", "-c", "youtube-dl $url --get-filename")
-        val proc = rt.exec(commands)
+            val proc = rt.exec(commands)
 
-        val stdInput = BufferedReader(InputStreamReader(proc.inputStream))
-        val stdError = BufferedReader(InputStreamReader(proc.errorStream))
+            val stdInput = BufferedReader(InputStreamReader(proc.inputStream))
+            val stdError = BufferedReader(InputStreamReader(proc.errorStream))
+
 
 // Read the output from the command
+            var title: String? = null
+            while (stdInput.readLine().also { title = it } != null) {
 
-// Read the output from the command
-        var title: String? = null
-        while (stdInput.readLine().also { title = it } != null) {
-            println(title?.substring(0, title!!.length - 16))
-        }
+                println(title?.substring(0, title!!.length - 16))
+            }
 
-        // Read any errors from the attempted command
 
-// Read any errors from the attempted command
-        while (stdError.readLine().also { title = it } != null) {
-            print(title)
-        }
+            // Read any errors from the attempted command
+            while (stdError.readLine().also { title = it } != null) {
+                print(title)
+            }
+
         }
         t2.start()
+
     }
 
     fun getPlaylistInfo(url: String) {
