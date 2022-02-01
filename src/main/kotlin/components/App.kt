@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
@@ -26,7 +25,7 @@ class App {
     @Preview
     fun AppComponent(
         urlState: MutableState<TextFieldValue>,
-        queueList: SnapshotStateList<DownloadQueue>
+        queueList: MutableList<DownloadQueue>
     ) {
 
         Row(
@@ -43,10 +42,10 @@ class App {
 
                 Row {
                     InputText().InputLink(urlState)
-                    Download().DownloadButton(queueList)
+                    Download().DownloadButton(queueList,urlState)
                 }
 
-                TableQueue().downloadQueueBody(urlState, queueList)
+                TableQueue().downloadQueueBody( queueList)
 
 
             }

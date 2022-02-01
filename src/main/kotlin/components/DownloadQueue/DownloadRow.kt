@@ -23,13 +23,17 @@ class DownloadRow {
     @Composable
     @Preview
     fun downloadRow(
-        urlState: MutableState<TextFieldValue>
+        urlState:String,
+        videoState:MutableState<DownloadQueue>
     ) {
+
+//        TerminalCommands().downloadVideo(urlState,videoState)
+        TerminalCommands().downloadVideo(urlState,videoState)
 
         val initDownloadQueue = DownloadQueue(
             "001",
             remember { mutableStateOf("Download") },
-            "no url",
+           "url" ,
             remember { mutableStateOf(0f) },
             "0",
 
@@ -43,11 +47,11 @@ class DownloadRow {
         val boxModifier = Modifier.size(100.dp, 30.dp).padding(8.dp)
 
 
-        val videoState = remember { mutableStateOf(initDownloadQueue) }
-        TerminalCommands().downloadSimulation(videoState)
 
-//        val progressState = remember { mutableStateOf(0) }
-//        val isDownloadingState = remember { mutableStateOf(false) }
+
+
+
+
 
 
         Card(modifier = cardRowModifier.size(38.dp), backgroundColor = cardBackground) {

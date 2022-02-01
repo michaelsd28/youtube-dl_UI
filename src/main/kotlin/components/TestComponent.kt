@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -17,7 +16,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
-import components.DownloadQueue.DownloadRow
 
 
 class TestComponent {
@@ -57,11 +55,13 @@ class TestComponent {
         val downloadTest1: DownloadQueue = DownloadQueue(
             "001",
             textQ,
-            "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "url",
             remember { mutableStateOf(0f) },
             "100",
 
             )
+
+
 
 
         val textState = remember { mutableStateOf("Hello World") }

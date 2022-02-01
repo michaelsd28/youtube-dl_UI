@@ -73,15 +73,10 @@ class RetrieveTerminalOutput {
 
 
 
-        if (value != null) {
-
-            println("$value this is the value divided by 100")
-        }
-
-        if (value != null) {
-            return value.toFloat() / 100
+        return if (value != null) {
+            value.toFloat() / 100
         } else {
-            return null
+            null
         }
 
 

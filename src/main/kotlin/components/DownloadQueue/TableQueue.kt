@@ -6,11 +6,7 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,11 +28,11 @@ class TableQueue {
 
     @Composable
     @Preview
-    fun downloadQueueBody(urlState: MutableState<TextFieldValue>, queueList: SnapshotStateList<DownloadQueue>) {
+    fun downloadQueueBody( queueList: MutableList<DownloadQueue>) {
 
 
         val stateVertical = rememberScrollState(0)
-        remember { mutableStateListOf<DownloadQueue>() }
+
 
         Card(
             modifier = tableCardModifier,
@@ -51,7 +47,7 @@ class TableQueue {
 
 
                     queueList.forEach {
-                        DownloadRow().downloadRow(urlState)
+                        DownloadRow().downloadRow(it.url, remember { mutableStateOf(it) }  )
                     }
 
 

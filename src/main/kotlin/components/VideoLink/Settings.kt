@@ -29,7 +29,7 @@ class Settings {
 
            Row(Modifier.offset(x = 80.dp).clickable {
 
-               println("click here")
+
 
            }.padding(10.dp)){
 

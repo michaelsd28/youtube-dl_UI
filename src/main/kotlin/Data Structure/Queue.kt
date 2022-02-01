@@ -1,12 +1,16 @@
 package `Data Structure`
 
+import Util.TerminalCommands
 import androidx.compose.runtime.MutableState
+import androidx.compose.ui.text.input.TextFieldValue
+import java.io.BufferedReader
+import java.io.InputStreamReader
 
 
 data class DownloadQueue(
-    val id: String? = null,
+    var id: String? = null,
     var name: MutableState<String>,
-    val url: String? = null,
+    var url: String,
     var status: MutableState<Float>?= null,
     var remainingTime: String? = null,
     var speed: String? = null,
@@ -30,12 +34,7 @@ data class Queue(val value: DownloadQueue? = null, var next: Queue? = null) {
         }
     }
 
-    fun print() {
-        println(value)
-        if (next != null) {
-            next!!.print()
-        }
-    }
+
 
     fun returnQueue(): Queue? {
         return if (next == null) {
@@ -44,23 +43,38 @@ data class Queue(val value: DownloadQueue? = null, var next: Queue? = null) {
             next
         }
     }
+
+
 }
 
 
-fun main() {
-
-//    val queue:DownloadQueue = DownloadQueue("1","test","https://www.google.com","pending","0")
-
-//    val myQueue = Queue(queue)
-//    myQueue.enqueue(queue)
-//    myQueue.enqueue(queue)
-
-//    kotlin convert class to json
-
-//    import Gson
-
-//    val json  = Gson().toJson(myQueue)
+fun main (){
 
 
-//  println(json)
+
+    val rt = Runtime.getRuntime()
+    val commands = arrayOf("wsl ", "-d", "Alpine", "bash", "-c", "youtube-dl https://www.youtube.com/watch?v=Vj4Y1c-DSM0")
+    val proc = rt.exec(commands)
+
+    val stdInput = BufferedReader(InputStreamReader(proc.inputStream))
+    val stdError = BufferedReader(InputStreamReader(proc.errorStream))
+
+    var str = ""
+
+    while (stdInput.readLine().also { str = it } != null) {
+        println("$str this is the output")
+    }
+
+    while (stdError.readLine().also { str = it } != null) {
+        println("$str this is the error")
+    }
+
+
+
+
+
+
+
 }
+
+

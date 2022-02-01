@@ -24,27 +24,29 @@ class TerminalCommands {
             var str: String = " hi"
             try {
 
-                while (stdInput.readLine().also { str = it } != null) {
-                    println("$str ${retrieveTerminalOutput.getDownloadPercentageInFloat(str)} this the percentage 2")
-
-                    if (retrieveTerminalOutput.getVideoTitle(str).toString() != "") {
-                        state.value.name.value = retrieveTerminalOutput.getVideoTitle(str).toString().substring(0,50)
-                    }
-
-                    if(retrieveTerminalOutput.getDownloadPercentageInFloat(str)!= null){
-                        state.value.status!!.value = retrieveTerminalOutput.getDownloadPercentageInFloat(str)!!
-                    }
-
-                    state.value.remainingTime = retrieveTerminalOutput.getDownloadRemainingTime(str)
-                    state.value.speed = retrieveTerminalOutput.getDownloadSpeed(str)
+            while (stdInput.readLine().also { str = it } != null) {
+                println(str)
+                println("$str ${retrieveTerminalOutput.getDownloadPercentageInFloat(str)} this the percentage 2")
 
 
 
+                if (retrieveTerminalOutput.getVideoTitle(str).toString() != "") {
+//                    state.value.name.value = retrieveTerminalOutput.getVideoTitle(str).toString().substring(0, 50)
                 }
 
-                while (stdError.readLine().also { str = it } != null) {
-                    print(str)
+                if (retrieveTerminalOutput.getDownloadPercentageInFloat(str) != null) {
+                    state.value.status!!.value = retrieveTerminalOutput.getDownloadPercentageInFloat(str)!!
                 }
+
+                state.value.remainingTime = retrieveTerminalOutput.getDownloadRemainingTime(str)
+                state.value.speed = retrieveTerminalOutput.getDownloadSpeed(str)
+
+
+            }
+
+            while (stdError.readLine().also { str = it } != null) {
+                print(str)
+            }
 
             } catch (e: Exception) {
                 println("error in line: ${e.printStackTrace()}")
@@ -57,29 +59,67 @@ class TerminalCommands {
 
     }
 
-    fun downloadVideo(url: String, state: MutableState<String>) {
-        val rt = Runtime.getRuntime()
-        val commands = arrayOf("wsl ", "-d", "Ubuntu-20.04", "bash", "-c", "youtube-dl $url")
-        val proc = rt.exec(commands)
+    fun downloadVideo(videoURL: String, videoState: MutableState<DownloadQueue>) {
 
-        val stdInput = BufferedReader(InputStreamReader(proc.inputStream))
-        val stdError = BufferedReader(InputStreamReader(proc.errorStream))
 
-// Read the output from the command
+        println("$videoURL this the video url and video state is: ")
+        val t1 = Thread {
 
-// Read the output from the command
-        var s: String? = null
-        while (stdInput.readLine().also { s = it } != null) {
-            state.value = s.toString()
-            println(s)
+            try {
+
+                val rt = Runtime.getRuntime()
+                val commands = arrayOf("wsl ", "-d", "Alpine", "bash", "-c", "youtube-dl $videoURL")
+                val proc = rt.exec(commands)
+
+
+                val stdInput = BufferedReader(InputStreamReader(proc.inputStream))
+                val stdError = BufferedReader(InputStreamReader(proc.errorStream))
+                var str: String = " hi my friend"
+
+
+                while (stdInput.readLine() != null) {
+
+                    if (stdInput.readLine() != null) {
+                        str = stdInput.readLine().also { str = it }
+                        println("$str  this the output")
+                    }
+
+
+
+
+
+                    if (retrieveTerminalOutput.getVideoTitle(str).toString() != "") {
+                        videoState.value.name.value = retrieveTerminalOutput.getVideoTitle(str).toString()
+                    }
+
+                    if (retrieveTerminalOutput.getDownloadPercentageInFloat(str) != null) {
+                        videoState.value.status!!.value = retrieveTerminalOutput.getDownloadPercentageInFloat(str)!!
+                    }
+
+                    videoState.value.remainingTime = retrieveTerminalOutput.getDownloadRemainingTime(str)
+                    videoState.value.speed = retrieveTerminalOutput.getDownloadSpeed(str)
+
+
+                }
+
+                while (stdError.readLine() != null) {
+                    if (stdInput.readLine() != null) {
+                        str = stdInput.readLine().also { str = it }
+
+                    }
+                    print("$str this is the error")
+                }
+
+            } catch (e: Exception) {
+
+                println("error in line: ${e.printStackTrace()}")
+            }
+
+
         }
+        t1.start()
 
-        // Read any errors from the attempted command
 
-// Read any errors from the attempted command
-        while (stdError.readLine().also { s = it } != null) {
-            print(s)
-        }
     }
 
     fun downloadAudio(url: String) {

@@ -2,7 +2,6 @@
 import time
 import random
 
-from sqlalchemy import Float
 
 
 strExample = """
