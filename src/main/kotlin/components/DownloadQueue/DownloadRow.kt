@@ -14,7 +14,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 
 class DownloadRow {
@@ -24,20 +23,26 @@ class DownloadRow {
     @Preview
     fun downloadRow(
         urlState:String,
-        videoState:MutableState<DownloadQueue>
     ) {
 
-//        TerminalCommands().downloadVideo(urlState,videoState)
-        TerminalCommands().downloadVideo(urlState,videoState)
 
-        val initDownloadQueue = DownloadQueue(
+        val floatTest:MutableState<Float> = remember { mutableStateOf(0f) }
+        val nameTest:MutableState<String> = remember { mutableStateOf("hi there") }
+
+        val videoStateInit= remember { mutableStateOf(DownloadQueue(
+            "01",
+            nameTest,
+            "url",
+            floatTest,
             "001",
-            remember { mutableStateOf("Download") },
-           "url" ,
-            remember { mutableStateOf(0f) },
-            "0",
+            "002",
 
-            )
+        )) }
+
+
+        TerminalCommands().downloadVideo(urlState,videoStateInit)
+
+
 
         val cardRowModifier =
             Modifier
@@ -60,9 +65,9 @@ class DownloadRow {
                 Row(verticalAlignment = Alignment.Top) {
 
                     Text(
-                        text = videoState.value.name.value, color = Color(0xFFFFFFFF), modifier = Modifier.weight(5f)
+                        text = videoStateInit.value.name.value, color = Color(0xFFFFFFFF), modifier = Modifier.weight(5f)
                     )
-                    videoState.value.speed?.let {
+                    videoStateInit.value.speed?.let {
                         Text(
                             text = it, color = Color(0xFFFFFFFF), modifier = Modifier.weight(1f)
                         )
@@ -70,13 +75,13 @@ class DownloadRow {
                     Box(modifier = Modifier.weight(1f).padding(start = 28.dp)) {
                         CircularProgressIndicator(
                             modifier = Modifier.size(20.dp),
-                            progress = videoState.value.status!!.value.toFloat(),
+                            progress = videoStateInit.value.status!!.value.toFloat(),
                             color = Color(0xFFF05454)
                         )
                     }
 
 
-                    videoState.let {
+                    videoStateInit.let {
                         it.value.remainingTime?.let { it1 ->
                             Text(
                                 text = it1,

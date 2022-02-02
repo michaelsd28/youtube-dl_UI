@@ -27,8 +27,8 @@ class TestComponent {
     val boxModifier = Modifier.size(100.dp, 30.dp).padding(8.dp)
 
     @Composable
-    fun testRow() {
-        val textP = remember { mutableStateOf("hi there") }
+    fun testRow(textP: MutableState<String> ) {
+
 //        TerminalCommands().downloadSimulation(textP)
 
 
@@ -91,9 +91,7 @@ class TestComponent {
 
 
             arrayList.forEach {
-
-//                DownloadRow().downloadRow()
-
+                testRow(it.name)
             }
 
 
@@ -119,11 +117,12 @@ fun main() = application {
         transparent = false,
         resizable = true,
         state = windowState,
-
-
         ) {
 
+/*
+https://utreon.com/v/TBffN4aqTGE
 
+ */
         TestComponent().TestComponent()
 
 

@@ -24,29 +24,19 @@ class TerminalCommands {
             var str: String = " hi"
             try {
 
-            while (stdInput.readLine().also { str = it } != null) {
-                println(str)
-                println("$str ${retrieveTerminalOutput.getDownloadPercentageInFloat(str)} this the percentage 2")
+                while (stdInput.readLine().also { state.value.name.value = it;str = it } != null) {
+                    println(str)
+                    println("$str ${retrieveTerminalOutput.getDownloadPercentageInFloat(str)} this the percentage 2")
 
 
 
-                if (retrieveTerminalOutput.getVideoTitle(str).toString() != "") {
-//                    state.value.name.value = retrieveTerminalOutput.getVideoTitle(str).toString().substring(0, 50)
+
                 }
 
-                if (retrieveTerminalOutput.getDownloadPercentageInFloat(str) != null) {
-                    state.value.status!!.value = retrieveTerminalOutput.getDownloadPercentageInFloat(str)!!
+                while (stdError.readLine().also { state.value.name.value = it;str = it } != null) {
+                    print(str)
+
                 }
-
-                state.value.remainingTime = retrieveTerminalOutput.getDownloadRemainingTime(str)
-                state.value.speed = retrieveTerminalOutput.getDownloadSpeed(str)
-
-
-            }
-
-            while (stdError.readLine().also { str = it } != null) {
-                print(str)
-            }
 
             } catch (e: Exception) {
                 println("error in line: ${e.printStackTrace()}")

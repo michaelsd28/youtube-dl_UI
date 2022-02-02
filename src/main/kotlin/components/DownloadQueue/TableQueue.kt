@@ -47,7 +47,7 @@ class TableQueue {
 
 
                     queueList.forEach {
-                        DownloadRow().downloadRow(it.url, remember { mutableStateOf(it) }  )
+                        DownloadRow().downloadRow(it.url )
                     }
 
 

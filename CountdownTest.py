@@ -58,6 +58,27 @@ def increaseDataValues():
     downloadROW:str = f"{beforeDownload} \n  {percentageYTL}% of {dataYTL}MiB at {speedYTL}KiB/s ETA {etaYTL}:{etaS}"
     print(downloadROW)
     time.sleep(1)
+    dataYTL = round(random.uniform(1, 800), 2)
+    percentageYTL = round(random.uniform(1, 100), 2)
+    speedYTL = round(random.uniform(10, 20), 2)
+    etaYTL = random.randint(10, 59)
+    downloadROW:str = f"{beforeDownload} \n  {percentageYTL}% of {dataYTL}MiB at {speedYTL}KiB/s ETA {etaYTL}:{etaS}"
+    print(downloadROW)
+    time.sleep(1)
+    dataYTL = round(random.uniform(1, 800), 2)
+    percentageYTL = round(random.uniform(1, 100), 2)
+    speedYTL = round(random.uniform(10, 20), 2)
+    etaYTL = random.randint(10, 59)
+    downloadROW:str = f"{beforeDownload} \n  {percentageYTL}% of {dataYTL}MiB at {speedYTL}KiB/s ETA {etaYTL}:{etaS}"
+    print(downloadROW)
+    time.sleep(1)
+    dataYTL = round(random.uniform(1, 800), 2)
+    percentageYTL = round(random.uniform(1, 100), 2)
+    speedYTL = round(random.uniform(10, 20), 2)
+    etaYTL = random.randint(10, 59)
+    downloadROW:str = f"{beforeDownload} \n  {percentageYTL}% of {dataYTL}MiB at {speedYTL}KiB/s ETA {etaYTL}:{etaS}"
+    print(downloadROW)
+    time.sleep(1)
 
 
     
