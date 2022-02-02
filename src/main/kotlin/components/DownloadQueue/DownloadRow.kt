@@ -36,7 +36,6 @@ class DownloadRow {
             floatTest,
             "001",
             "002",
-
         )) }
 
 
