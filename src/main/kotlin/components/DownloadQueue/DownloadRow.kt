@@ -26,24 +26,25 @@ class DownloadRow {
     ) {
 
 
-        val floatTest: MutableState<Float> = remember { mutableStateOf(0f) }
-        val nameTest: MutableState<String> = remember { mutableStateOf("hi there") }
+        val floatInit = remember { mutableStateOf(0f) }
+        val nameInit: MutableState<String> = remember { mutableStateOf("name init") }
 
-        val videoStateInit = remember {
-            mutableStateOf(
-                DownloadQueue(
-                    "01",
-                    nameTest,
-                    "url",
-                    floatTest,
-                    "001",
-                    "002",
-                )
+        val videoStateInit = remember {           mutableStateOf(
+            DownloadQueue(
+                "01",
+                nameInit,
+                "url",
+                floatInit,
+                "001",
+                "002",
             )
-        }
+        )}
 
 
-        TerminalCommands().downloadVideo(urlState, videoStateInit, nameTest)
+
+
+
+        TerminalCommands().downloadVideo(urlState, videoStateInit)
 //        TerminalCommands().downloadSimulation(videoStateInit)
 
 
@@ -57,7 +58,7 @@ class DownloadRow {
                 Row(verticalAlignment = Alignment.Top) {
 
                     Text(
-                        text = nameTest.value, color = Color(0xFFFFFFFF), modifier = Modifier.weight(5f)
+                        text = videoStateInit.value.name.value, color = Color(0xFFFFFFFF), modifier = Modifier.weight(5f)
                     )
                     videoStateInit.value.speed?.let {
                         Text(

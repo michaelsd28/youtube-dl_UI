@@ -41,39 +41,6 @@ class Minimize {
                     windowState.isMinimized = true
                 }
             )
-
-
         }
     }
-}
-
-
-fun main() {
-
-//    run python and get output
-
-    val rt = Runtime.getRuntime()
-    ///cmd timeout
-
-    val commands = arrayOf("wsl","-d","Ubuntu","bash", "-c", "youtube-dl https://utreon.com/v/TBffN4aqTGE")
-
-    val proc = rt.exec(commands)
-
-    val stdInput = BufferedReader(InputStreamReader(proc.inputStream))
-    val stdError = BufferedReader(InputStreamReader(proc.errorStream))
-    val str: String = " hi"
-
-    while (stdInput.readLine().also { println(it) } != null) {
-
-        println(str)
-
-    }
-
-    while (stdError.readLine().also { println(it)} != null) {
-
-        println(str)
-
-    }
-
-
 }

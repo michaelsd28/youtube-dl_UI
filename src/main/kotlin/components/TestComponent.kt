@@ -24,9 +24,22 @@ class TestComponent {
     @Composable
     fun testRow(videoURL: String) {
 
-        val textP = remember { mutableStateOf("hi there") }
+        val floatInit = remember { mutableStateOf(0f) }
+        val nameInit: MutableState<String> = remember { mutableStateOf("name init") }
 
-        TerminalCommands().downloadSimulation(videoURL, textP)
+        val videoStateInit = remember {           mutableStateOf(
+            DownloadQueue(
+                "01",
+                nameInit,
+                "url",
+                floatInit,
+                "001",
+                "002",
+            )
+        )}
+
+
+        TerminalCommands().downloadSimulation(videoURL, videoStateInit)
 
 
         Column {
@@ -38,7 +51,7 @@ class TestComponent {
                 backgroundColor = Color.LightGray
             ) {
 
-                Text(text = textP.value)
+                Text(text = videoStateInit.value.name.value)
             }
         }
     }
@@ -59,12 +72,12 @@ class TestComponent {
 
         var videoURL: String = ""
 
-        val textFieldState: MutableState<TextFieldValue> = remember { mutableStateOf(TextFieldValue("")) }
+        val textFieldState = remember { mutableStateOf(TextFieldValue("")) }
 
 
         val textState = remember { mutableStateOf("Hello World") }
         val arrayList = remember { mutableStateListOf<DownloadQueue>() }
-        val queueList = remember { mutableStateOf(Queue()) }
+
 
         Column(Modifier.fillMaxSize().background(Color.Black)) {
 
@@ -87,8 +100,6 @@ class TestComponent {
 
 
             Button(onClick = {
-
-
                 arrayList.add(
 
                     DownloadQueue(

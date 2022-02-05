@@ -9,7 +9,7 @@ class TerminalCommands {
 
     val retrieveTerminalOutput = RetrieveTerminalOutput()
 
-    fun downloadSimulation(videoURL: String,state: MutableState<String>) {
+    fun downloadSimulation(videoURL: String, state: MutableState<DownloadQueue>) {
 
 
         println("$videoURL this the video url")
@@ -20,8 +20,7 @@ class TerminalCommands {
             ///cmd timeout
 
 
-
-            val commands = arrayOf("wsl","-d","Ubuntu","bash", "-c", "youtube-dl $videoURL")
+            val commands = arrayOf("wsl", "-d", "Ubuntu", "bash", "-c", "youtube-dl $videoURL")
             val proc = rt.exec(commands)
 
             val stdInput = BufferedReader(InputStreamReader(proc.inputStream))
@@ -29,7 +28,7 @@ class TerminalCommands {
             var str: String = " hi"
             try {
 
-                while (stdInput.readLine().also { println(it);state.value = it } != null) {
+                while (stdInput.readLine().also { println(it);state.value.name.value = it } != null) {
 
                     println(str)
                     println("$str ${retrieveTerminalOutput.getDownloadPercentageInFloat(str)} this the percentage 2")
@@ -50,7 +49,7 @@ class TerminalCommands {
 
     }
 
-    fun downloadVideo(videoURL: String, videoState: MutableState<DownloadQueue>, nameTest: MutableState<String>) {
+    fun downloadVideo(videoURL: String, videoState: MutableState<DownloadQueue>) {
 
 
         println("$videoURL this the video url and video state is: ")
@@ -69,23 +68,14 @@ class TerminalCommands {
                 var str: String = " hi my friend"
 
 
-                while (stdInput.readLine().also { println("$str  this the output"); str = it } != null) {
+                while (stdInput.readLine()
+                        .also { println("$str  this the output"); str = it;videoState.value.name.value = it } != null
+                ) {
 
 
+//                    println(str)
 
-                    nameTest.value = str
-
-
-                    if (retrieveTerminalOutput.getVideoTitle(str).toString() != "") {
-                        videoState.value.name.value = retrieveTerminalOutput.getVideoTitle(str).toString()
-                    }
-
-                    if (retrieveTerminalOutput.getDownloadPercentageInFloat(str) != null) {
-                        videoState.value.status!!.value = retrieveTerminalOutput.getDownloadPercentageInFloat(str)!!
-                    }
-
-                    videoState.value.remainingTime = retrieveTerminalOutput.getDownloadRemainingTime(str)
-                    videoState.value.speed = retrieveTerminalOutput.getDownloadSpeed(str)
+                    videoState.value.remainingTime = str
 
 
                 }

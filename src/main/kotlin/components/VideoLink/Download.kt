@@ -24,16 +24,11 @@ import androidx.compose.ui.unit.dp
 class Download {
 
 
-
-
     ///id
     //name
     //url
     ///status
     ///remaining
-
-
-
 
 
     @Composable
@@ -42,17 +37,17 @@ class Download {
 
 
         val initTitle = remember { mutableStateOf("hi there") }
-        val floatState =      remember { mutableStateOf(0f) }
+        val floatState = remember { mutableStateOf(0f) }
 
 
-        val currentDownload:DownloadQueue = DownloadQueue(
+        val currentDownload: DownloadQueue = DownloadQueue(
             "1",
             initTitle,
             "url",
             floatState,
             "0"
         )
-        val currentDownloadState:MutableState<DownloadQueue> = remember { mutableStateOf(currentDownload) }
+        val currentDownloadState: MutableState<DownloadQueue> = remember { mutableStateOf(currentDownload) }
 
 
 
@@ -62,30 +57,28 @@ class Download {
             OutlinedButton(
                 {
 
+                    queueList.add(
+                        DownloadQueue(
+                            "001",
+                            mutableStateOf("hi there"),
+                            urlState.value.text,
+                            mutableStateOf(0f) ,
+                            "100",
+                        )
+                    )
 
-
-                    queueList.forEach {
-                        println("${it.url} this is the url")
-                    }
-
-
-                    currentDownload.url = urlState.value.text
-
-
-
-                    queueList.add(currentDownloadState.value)
 
 
                 },
-                modifier= Modifier.size(50.dp),  //avoid the oval shape
+                modifier = Modifier.size(50.dp),  //avoid the oval shape
 
-                border= BorderStroke(2.dp, Color.Black),
+                border = BorderStroke(2.dp, Color.Black),
                 contentPadding = PaddingValues(0.dp),  //avoid the little icon
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xff602626))
 
             ) {
                 Image(
-                    painterResource(resourcePath = "Download/downloadButton.png" ),
+                    painterResource(resourcePath = "Download/downloadButton.png"),
                     contentDescription = "logo",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.size(30.dp),
