@@ -35,7 +35,6 @@ class TerminalCommands {
                     println("$str ${retrieveTerminalOutput.getDownloadPercentageInFloat(str)} this the percentage 2")
 
                 }
-
                 while (stdError.readLine().also { str = it } != null) {
                     print(str)
 
