@@ -15,35 +15,65 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.WindowState
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import kotlin.system.exitProcess
 
 class Minimize {
-
-
-
-
 
 
     @Composable
     @Preview
     fun minimizeButton(windowState: WindowState) {
 
-        Card (modifier = Modifier.size(25.dp),
-            shape = RoundedCornerShape(0.dp,0.dp,0.dp,5.dp),
+        Card(
+            modifier = Modifier.size(25.dp),
+            shape = RoundedCornerShape(0.dp, 0.dp, 0.dp, 5.dp),
             backgroundColor = Color(0xff041C32)
 
-            ) {
+        ) {
 
             Image(
-                painterResource(resourcePath = "TopBar/minimize.png" ),
+                painterResource(resourcePath = "TopBar/minimize.png"),
                 contentDescription = "logo",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.padding(5.dp).clickable {
-               windowState.isMinimized = true
+                    windowState.isMinimized = true
                 }
             )
 
 
         }
     }
+}
+
+
+fun main() {
+
+//    run python and get output
+
+    val rt = Runtime.getRuntime()
+    ///cmd timeout
+
+    val commands = arrayOf("wsl","-d","Ubuntu","bash", "-c", "youtube-dl https://utreon.com/v/TBffN4aqTGE")
+
+    val proc = rt.exec(commands)
+
+    val stdInput = BufferedReader(InputStreamReader(proc.inputStream))
+    val stdError = BufferedReader(InputStreamReader(proc.errorStream))
+    val str: String = " hi"
+
+    while (stdInput.readLine().also { println(it) } != null) {
+
+        println(str)
+
+    }
+
+    while (stdError.readLine().also { println(it)} != null) {
+
+        println(str)
+
+    }
+
+
 }

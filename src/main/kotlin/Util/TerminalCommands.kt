@@ -9,14 +9,19 @@ class TerminalCommands {
 
     val retrieveTerminalOutput = RetrieveTerminalOutput()
 
-    fun downloadSimulation(state: MutableState<DownloadQueue>) {
+    fun downloadSimulation(videoURL: String,state: MutableState<String>) {
+
+
+        println("$videoURL this the video url")
 
         val t1 = Thread {
 
             val rt = Runtime.getRuntime()
             ///cmd timeout
 
-            val commands = arrayOf("cmd", "/c", "python", "-u", "CountdownTest.py")
+
+
+            val commands = arrayOf("wsl","-d","Ubuntu","bash", "-c", "youtube-dl $videoURL")
             val proc = rt.exec(commands)
 
             val stdInput = BufferedReader(InputStreamReader(proc.inputStream))
@@ -24,16 +29,15 @@ class TerminalCommands {
             var str: String = " hi"
             try {
 
-                while (stdInput.readLine().also { state.value.name.value = it;str = it } != null) {
+                while (stdInput.readLine().also { println(it);state.value = it } != null) {
+
                     println(str)
                     println("$str ${retrieveTerminalOutput.getDownloadPercentageInFloat(str)} this the percentage 2")
 
 
-
-
                 }
 
-                while (stdError.readLine().also { state.value.name.value = it;str = it } != null) {
+                while (stdError.readLine().also { str = it } != null) {
                     print(str)
 
                 }
@@ -49,7 +53,7 @@ class TerminalCommands {
 
     }
 
-    fun downloadVideo(videoURL: String, videoState: MutableState<DownloadQueue>) {
+    fun downloadVideo(videoURL: String, videoState: MutableState<DownloadQueue>, nameTest: MutableState<String>) {
 
 
         println("$videoURL this the video url and video state is: ")
@@ -58,7 +62,8 @@ class TerminalCommands {
             try {
 
                 val rt = Runtime.getRuntime()
-                val commands = arrayOf("wsl ", "-d", "Alpine", "bash", "-c", "youtube-dl $videoURL")
+
+                val commands = arrayOf("wsl", "-d", "Ubuntu", "bash", "-c", "youtube-dl $videoURL")
                 val proc = rt.exec(commands)
 
 
@@ -67,15 +72,11 @@ class TerminalCommands {
                 var str: String = " hi my friend"
 
 
-                while (stdInput.readLine() != null) {
-
-                    if (stdInput.readLine() != null) {
-                        str = stdInput.readLine().also { str = it }
-                        println("$str  this the output")
-                    }
+                while (stdInput.readLine().also { println("$str  this the output"); str = it } != null) {
 
 
 
+                    nameTest.value = str
 
 
                     if (retrieveTerminalOutput.getVideoTitle(str).toString() != "") {
@@ -92,13 +93,7 @@ class TerminalCommands {
 
                 }
 
-                while (stdError.readLine() != null) {
-                    if (stdInput.readLine() != null) {
-                        str = stdInput.readLine().also { str = it }
-
-                    }
-                    print("$str this is the error")
-                }
+                stdError.readLine().also { println("$it this is the error"); str = it }
 
             } catch (e: Exception) {
 
@@ -138,7 +133,10 @@ class TerminalCommands {
             var title: String? = null
             while (stdInput.readLine().also { title = it } != null) {
 
-                println(title?.substring(0, title!!.length - 16))
+                println("$title this is the title")
+
+
+//                println(title?.substring(0, title!!.length - 16))
             }
 
 

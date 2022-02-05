@@ -22,49 +22,42 @@ class DownloadRow {
     @Composable
     @Preview
     fun downloadRow(
-        urlState:String,
+        urlState: String,
     ) {
 
 
-        val floatTest:MutableState<Float> = remember { mutableStateOf(0f) }
-        val nameTest:MutableState<String> = remember { mutableStateOf("hi there") }
+        val floatTest: MutableState<Float> = remember { mutableStateOf(0f) }
+        val nameTest: MutableState<String> = remember { mutableStateOf("hi there") }
 
-        val videoStateInit= remember { mutableStateOf(DownloadQueue(
-            "01",
-            nameTest,
-            "url",
-            floatTest,
-            "001",
-            "002",
-        )) }
+        val videoStateInit = remember {
+            mutableStateOf(
+                DownloadQueue(
+                    "01",
+                    nameTest,
+                    "url",
+                    floatTest,
+                    "001",
+                    "002",
+                )
+            )
+        }
 
 
-        TerminalCommands().downloadVideo(urlState,videoStateInit)
+        TerminalCommands().downloadVideo(urlState, videoStateInit, nameTest)
+//        TerminalCommands().downloadSimulation(videoStateInit)
 
 
-
-        val cardRowModifier =
-            Modifier
+        Card(
+            modifier = Modifier
                 .padding(start = 16.dp, bottom = 8.dp, end = 16.dp, top = 8.dp)
-                .fillMaxWidth()
-        val cardBackground: Color = Color(0xFF222222)
-        val boxModifier = Modifier.size(100.dp, 30.dp).padding(8.dp)
-
-
-
-
-
-
-
-
-
-        Card(modifier = cardRowModifier.size(38.dp), backgroundColor = cardBackground) {
-            Box(modifier = boxModifier) {
+                .fillMaxWidth().size(38.dp), backgroundColor = Color(0xFF222222)
+        ) {
+            Box(modifier = Modifier.size(100.dp, 30.dp).padding(8.dp)) {
 
                 Row(verticalAlignment = Alignment.Top) {
 
                     Text(
-                        text = videoStateInit.value.name.value, color = Color(0xFFFFFFFF), modifier = Modifier.weight(5f)
+                        text = nameTest.value, color = Color(0xFFFFFFFF), modifier = Modifier.weight(5f)
                     )
                     videoStateInit.value.speed?.let {
                         Text(
