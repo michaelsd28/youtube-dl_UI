@@ -12,8 +12,8 @@ data class DownloadQueue(
     var name: MutableState<String>,
     var url: String,
     var status: MutableState<Float>?= null,
-    var remainingTime: String? = null,
-    var speed: String? = null,
+    var remainingTime: MutableState<String>,
+    var speed: MutableState<String>,
 )
 
 data class Queue(val value: DownloadQueue? = null, var next: Queue? = null) {

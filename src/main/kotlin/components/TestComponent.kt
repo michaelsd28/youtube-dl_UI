@@ -33,8 +33,8 @@ class TestComponent {
                 nameInit,
                 "url",
                 floatInit,
-                "001",
-                "002",
+                mutableStateOf(""),
+                mutableStateOf("\uD83D\uDE80"),
             )
         )}
 
@@ -67,7 +67,8 @@ class TestComponent {
             textQ,
             "url",
             remember { mutableStateOf(0f) },
-            "100",
+            mutableStateOf("fail"),
+            mutableStateOf("\uD83D\uDE80"),
         )
 
         var videoURL: String = ""
@@ -107,7 +108,8 @@ class TestComponent {
                         textQ,
                         textFieldState.value.text,
                         mutableStateOf(0f) ,
-                        "100",
+                        mutableStateOf("fail"),
+                        mutableStateOf("\uD83D\uDE80"),
                     )
                 )
 

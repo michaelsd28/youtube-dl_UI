@@ -35,20 +35,13 @@ class RetrieveTerminalOutput {
 
     /// working
     fun getDownloadSpeed(data: String): String {
+        val regexKiB = Regex("""(\d+\.\d+)KiB/s""")
+        val regexMiB = Regex("""(\d+\.\d+)MiB/s""")
 
-        return try {
-            val regexKiB = Regex("[0-9]{1,3}\\.[0-9]{1,3}KiB/s")
-            val valuesKiB = regexKiB.find(data)
-            valuesKiB!!.groupValues[0]
-        } catch (e: Exception) {
-            val regexMiB = Regex("[0-9]{1,3}\\.[0-9]{1,3}MiB/s")
-            val valuesMiB = regexMiB.find(data)
-            if (valuesMiB != null) {
-                valuesMiB.groupValues[0]
-            } else {
-                "0.0KiB/s"
-            }
-        }
+        val valueKiB = regexKiB.find(data)
+        val valueMiB = regexMiB.find(data)
+
+        return valueKiB?.value ?: (valueMiB?.value ?: "0.0KiB/s")
 
 
     }
@@ -62,21 +55,18 @@ class RetrieveTerminalOutput {
     }
 
     ///working
-    fun getDownloadPercentageInFloat(data: String): Float? {
-
+    fun getDownloadPercentageInFloat(data: String): Float {
 
 
         val percentageRegex = Regex(".([0-9].{1,3}%)")
         val percentage = percentageRegex.find(data)
-        val value =  percentage?.groups?.get(0)?.value?.replace("%","")
-
-
+        val value = percentage?.groups?.get(0)?.value?.replace("%", "")
 
 
         return if (value != null) {
             value.toFloat() / 100
         } else {
-            null
+            0f
         }
 
 
@@ -85,27 +75,42 @@ class RetrieveTerminalOutput {
 
     //working
     fun getDownloadRemainingTime(data: String): String {
-        val regex = Regex("ETA ([0-9]{2}:[0-9]{2})")
-        val matchResult = regex.find(data)
 
-        return "${matchResult?.groupValues?.get(1)}s"
+        return if (data.contains("has already been downloaded")) {
+            "✔️"
+        } else {
+            val regex = Regex("ETA ([0-9]{2}:[0-9]{2})")
+            val matchResult = regex.find(data)
+            if (matchResult != null) {
+                matchResult.groupValues[1]
+            } else {
+                "✔️"
+            }
+
+        }
+
 
     }
 
 
-    fun getVideoTitle(data: String): String? {
+    fun getVideoTitle(data: String): String {
 
-        var firstValue: String? = ""
+        return if (data.contains("Destination: ")) {
+            val regex = Regex("""Destination: (.*)""")
+            val match = regex.find(data)
+            val title = match?.groupValues?.get(1)?.substringBefore("-")
+            title ?: "Unknown"
+        } else {
 
+            val regex = Regex("""\[download\] (.*)""")
+            val match = regex.find(data)
+            val title = match?.groupValues?.get(1)?.substringBefore("-")
 
-        val getTitleRegex = Regex("Destination: (.*)...................")
-        val getTitle = getTitleRegex.find(data)
+            title ?: "Unknown"
 
-        if (getTitle?.groupValues?.get(1) != null) {
-            firstValue = getTitle.groupValues[1]
         }
 
-        return firstValue
+
     }
 
 }

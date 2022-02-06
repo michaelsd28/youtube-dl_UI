@@ -36,16 +36,17 @@ class Download {
     fun DownloadButton(queueList: MutableList<DownloadQueue>, urlState: MutableState<TextFieldValue>) {
 
 
-        val initTitle = remember { mutableStateOf("hi there") }
-        val floatState = remember { mutableStateOf(0f) }
+
+
 
 
         val currentDownload: DownloadQueue = DownloadQueue(
             "1",
-            initTitle,
+            mutableStateOf("\uD83D\uDCDD"),
             "url",
-            floatState,
-            "0"
+            mutableStateOf(0f) ,
+            mutableStateOf("finished"),
+            mutableStateOf("\uD83D\uDE80")
         )
         val currentDownloadState: MutableState<DownloadQueue> = remember { mutableStateOf(currentDownload) }
 
@@ -63,7 +64,8 @@ class Download {
                             mutableStateOf("hi there"),
                             urlState.value.text,
                             mutableStateOf(0f) ,
-                            "100",
+                            mutableStateOf("⌛"),
+                        mutableStateOf("\uD83D\uDE80")
                         )
                     )
 

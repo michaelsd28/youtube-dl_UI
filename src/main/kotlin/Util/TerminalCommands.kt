@@ -2,12 +2,18 @@ package Util
 
 import `Data Structure`.DownloadQueue
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
 class TerminalCommands {
 
     val retrieveTerminalOutput = RetrieveTerminalOutput()
+
+
+    fun printColor(text: String, color: String) {
+        println("\u001B[${color}m${text}\u001B[0m")
+    }
 
     fun downloadSimulation(videoURL: String, state: MutableState<DownloadQueue>) {
 
@@ -16,7 +22,9 @@ class TerminalCommands {
 
         val t1 = Thread {
 
+
             val rt = Runtime.getRuntime()
+
             ///cmd timeout
 
 
@@ -27,8 +35,8 @@ class TerminalCommands {
             val stdError = BufferedReader(InputStreamReader(proc.errorStream))
             var str: String = " hi"
             try {
-
                 while (stdInput.readLine().also { println(it);state.value.name.value = it } != null) {
+
 
                     println(str)
                     println("$str ${retrieveTerminalOutput.getDownloadPercentageInFloat(str)} this the percentage 2")
@@ -58,6 +66,9 @@ class TerminalCommands {
             try {
 
                 val rt = Runtime.getRuntime()
+                var isNamed = false
+                var isRemaining = false
+                var isSpeed = false
 
                 val commands = arrayOf("wsl", "-d", "Ubuntu", "bash", "-c", "youtube-dl $videoURL")
                 val proc = rt.exec(commands)
@@ -65,17 +76,45 @@ class TerminalCommands {
 
                 val stdInput = BufferedReader(InputStreamReader(proc.inputStream))
                 val stdError = BufferedReader(InputStreamReader(proc.errorStream))
-                var str: String = " hi my friend"
+                var str: String = ""
 
 
                 while (stdInput.readLine()
-                        .also { println("$str  this the output"); str = it;videoState.value.name.value = it } != null
+                        .also { printColor("$str   this the output", "33");str = it } != null
+//                    printColor("$str   this the output","33")
                 ) {
+                    printColor("${retrieveTerminalOutput.getDownloadSpeed(str)} this the speed", "35")
+
+                    if (!isNamed && retrieveTerminalOutput.getVideoTitle(str) != "Unknown") {
+                        videoState.value.name.value = retrieveTerminalOutput.getVideoTitle(str)
+                        isNamed = true
+                    }
+
+                    if (str.isNotEmpty()) {
 
 
-//                    println(str)
 
-                    videoState.value.remainingTime = str
+                        videoState.value.status!!.value = retrieveTerminalOutput.getDownloadPercentageInFloat(str)
+                    }
+
+                    if(!isRemaining && retrieveTerminalOutput.getDownloadRemainingTime(str) != ""){
+                        videoState.value.remainingTime =
+                            mutableStateOf(retrieveTerminalOutput.getDownloadRemainingTime(str))
+                        isRemaining = true
+                    }
+
+                    if( retrieveTerminalOutput.getDownloadSpeed(str) != ""){
+                        videoState.value.speed.value = retrieveTerminalOutput.getDownloadSpeed(str)
+                    }
+
+                    if(retrieveTerminalOutput.getDownloadRemainingTime(str) != ""){
+                        videoState.value.remainingTime.value = retrieveTerminalOutput.getDownloadRemainingTime(str)
+                    }
+
+
+
+
+
 
 
                 }
@@ -93,6 +132,7 @@ class TerminalCommands {
 
 
     }
+
 
     fun downloadAudio(url: String) {
         println("Downloading audio from $url")

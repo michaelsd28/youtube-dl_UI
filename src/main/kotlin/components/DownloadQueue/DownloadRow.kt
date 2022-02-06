@@ -26,17 +26,17 @@ class DownloadRow {
     ) {
 
 
-        val floatInit = remember { mutableStateOf(0f) }
-        val nameInit: MutableState<String> = remember { mutableStateOf("name init") }
+
+
 
         val videoStateInit = remember {           mutableStateOf(
             DownloadQueue(
                 "01",
-                nameInit,
+                mutableStateOf("\uD83D\uDCDD"),
                 "url",
-                floatInit,
-                "001",
-                "002",
+                mutableStateOf(0f),
+                mutableStateOf("⌛"),
+                mutableStateOf("\uD83D\uDE80"),
             )
         )}
 
@@ -60,9 +60,9 @@ class DownloadRow {
                     Text(
                         text = videoStateInit.value.name.value, color = Color(0xFFFFFFFF), modifier = Modifier.weight(5f)
                     )
-                    videoStateInit.value.speed?.let {
+                    videoStateInit.value.speed.let {
                         Text(
-                            text = it, color = Color(0xFFFFFFFF), modifier = Modifier.weight(1f)
+                            text = it.value, color = Color(0xFFFFFFFF), modifier = Modifier.weight(1f)
                         )
                     }
                     Box(modifier = Modifier.weight(1f).padding(start = 28.dp)) {
@@ -75,9 +75,9 @@ class DownloadRow {
 
 
                     videoStateInit.let {
-                        it.value.remainingTime?.let { it1 ->
+                        it.value.remainingTime.let { it1 ->
                             Text(
-                                text = it1,
+                                text = it1.value,
                                 color = Color(0xFFFFFFFF),
                                 modifier = Modifier.weight(1f).padding(start = 8.dp)
                             )
