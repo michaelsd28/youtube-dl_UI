@@ -114,9 +114,6 @@ class TerminalCommands {
 
 
 
-
-
-
                 }
 
                 stdError.readLine().also { println("$it this is the error"); str = it }
