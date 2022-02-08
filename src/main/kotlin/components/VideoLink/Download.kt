@@ -36,15 +36,11 @@ class Download {
     fun DownloadButton(queueList: MutableList<DownloadQueue>, urlState: MutableState<TextFieldValue>) {
 
 
-
-
-
-
         val currentDownload: DownloadQueue = DownloadQueue(
             "1",
             mutableStateOf("\uD83D\uDCDD"),
             "url",
-            mutableStateOf(0f) ,
+            mutableStateOf(0f),
             mutableStateOf("finished"),
             mutableStateOf("\uD83D\uDE80")
         )
@@ -63,27 +59,26 @@ class Download {
                             "001",
                             mutableStateOf("hi there"),
                             urlState.value.text,
-                            mutableStateOf(0f) ,
+                            mutableStateOf(0f),
                             mutableStateOf("⌛"),
-                        mutableStateOf("\uD83D\uDE80")
+                            mutableStateOf("\uD83D\uDE80")
                         )
                     )
-
 
 
                 },
                 modifier = Modifier.size(50.dp),  //avoid the oval shape
 
-                border = BorderStroke(2.dp, Color.Black),
+                border = BorderStroke(2.dp, Color.Black.copy(alpha = 0f)),
                 contentPadding = PaddingValues(0.dp),  //avoid the little icon
-                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xff602626))
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xff602626).copy(alpha = 0f)),
 
             ) {
                 Image(
-                    painterResource(resourcePath = "Download/downloadButton.png"),
+                    painterResource(resourcePath = "Download/downloadIcon.png"),
                     contentDescription = "logo",
                     contentScale = ContentScale.Crop,
-                    modifier = Modifier.size(30.dp),
+                    modifier = Modifier.size(40.dp),
                 )
             }
 

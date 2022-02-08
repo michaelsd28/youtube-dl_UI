@@ -2,6 +2,7 @@
 import `Data Structure`.DownloadQueue
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,6 +21,7 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import components.App
 import components.TopBar.TopBar
+import kotlin.math.round
 
 val windowBorderShape = RoundedCornerShape(4.dp)
 val windowBorderStroke = BorderStroke(1.dp, Color.Black.copy(alpha = 0.2f))
@@ -40,19 +42,19 @@ fun main() = application {
 
 
         ) {
-        Card(
-            shape = windowBorderShape, border = windowBorderStroke, backgroundColor = Color.Black.copy(alpha = 0.2f),
-            modifier = Modifier
-                .background(
-                    brush = Brush
-                        .horizontalGradient(
-                            listOf(
-                                Color(0xFF2c1111),
-                                Color(0xFF602626),
-                                Color(0xFF202020)
-                            )
+        Card(shape = windowBorderShape, border = windowBorderStroke,
+            backgroundColor = Color.Black.copy(alpha = 0f),
+            modifier = Modifier.background(
+                brush = Brush
+                    .radialGradient(
+                        listOf(
+                            Color(0xFF121212),
+                            Color(0xFF2c1111),
+
+                            Color(0xFF121212),
                         )
-                )
+                )).border( shape = RoundedCornerShape(20.dp), border =  BorderStroke(1.dp, Color.Black.copy(alpha = 0f)))
+
         ) {
             Column(modifier = windowModifier) {
 
@@ -60,7 +62,8 @@ fun main() = application {
                     TopBar().TopBar(windowState)
                 }
 
-                App().AppComponent(textState, queueList)
+                    App().AppComponent(textState,queueList)
+
 
 
             }

@@ -13,8 +13,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import components.DownloadQueue.DownloadRow
+import components.DownloadQueue.OpenFolder
 import components.DownloadQueue.TitleRow
-import components.TestComponent
 
 class TableQueue {
 
@@ -28,7 +28,7 @@ class TableQueue {
 
 
         Card(
-            modifier = Modifier.size(590.dp, 300.dp),
+            modifier = Modifier.size(590.dp, 300.dp).offset( y = -(20).dp),
             shape = RoundedCornerShape(10.dp),
             backgroundColor = Color(0xff602626)
         ) {
@@ -56,5 +56,6 @@ class TableQueue {
                 )
             }
         }
+        OpenFolder().folderIcon()
     }
 }
