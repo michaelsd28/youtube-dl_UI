@@ -40,24 +40,27 @@ fun main() = application {
 
 
         ) {
-        Card(shape = windowBorderShape, border = windowBorderStroke, backgroundColor = Color.Black.copy(alpha = 0.2f),
+        Card(
+            shape = windowBorderShape, border = windowBorderStroke, backgroundColor = Color.Black.copy(alpha = 0.2f),
             modifier = Modifier
-                .background(brush = Brush
-                    .horizontalGradient(
-            listOf(
-                Color(0xFF2c1111),
-                Color(0xFF602626),
-                Color(0xFF202020)
-            )
-        ))) {
+                .background(
+                    brush = Brush
+                        .horizontalGradient(
+                            listOf(
+                                Color(0xFF2c1111),
+                                Color(0xFF602626),
+                                Color(0xFF202020)
+                            )
+                        )
+                )
+        ) {
             Column(modifier = windowModifier) {
 
                 WindowDraggableArea(Modifier) {
                     TopBar().TopBar(windowState)
                 }
 
-                    App().AppComponent(textState,queueList)
-
+                App().AppComponent(textState, queueList)
 
 
             }
