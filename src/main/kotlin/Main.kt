@@ -43,8 +43,11 @@ fun main() = application {
 
         ) {
         Card(shape = windowBorderShape, border = windowBorderStroke,
-            backgroundColor = Color.Black.copy(alpha = 0f),
-            modifier = Modifier.background(
+            backgroundColor = Color.Black.copy(alpha = 1f),
+
+
+        ) {
+            Column(modifier = Modifier.background(
                 brush = Brush
                     .radialGradient(
                         listOf(
@@ -53,10 +56,8 @@ fun main() = application {
 
                             Color(0xFF121212),
                         )
-                )).border( shape = RoundedCornerShape(20.dp), border =  BorderStroke(1.dp, Color.Black.copy(alpha = 0f)))
-
-        ) {
-            Column(modifier = windowModifier) {
+                    ))
+            ) {
 
                 WindowDraggableArea(Modifier) {
                     TopBar().TopBar(windowState)

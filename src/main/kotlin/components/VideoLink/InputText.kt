@@ -28,8 +28,10 @@ import androidx.compose.ui.unit.sp
 import java.awt.Cursor
 import java.awt.Cursor.HAND_CURSOR
 import java.awt.Cursor.WAIT_CURSOR
+import java.awt.Frame
 import java.awt.Toolkit
 import java.awt.datatransfer.DataFlavor
+import javax.swing.JOptionPane
 
 class InputText {
 
@@ -80,8 +82,15 @@ class InputText {
 
 //                                paste text
 
-                                val textClipBoard = Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor)
-                                textState.value = TextFieldValue(textClipBoard.toString())
+                                try {
+                                    val textClipBoard = Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor)
+                                    textState.value = TextFieldValue(textClipBoard.toString())
+                                } catch (e:Exception){
+                                    val frame:Frame = Frame()
+                                    JOptionPane.showMessageDialog(frame, "You need to copy a valid link");
+                                }
+
+
                             }
 
                                 .pointerHoverIcon(

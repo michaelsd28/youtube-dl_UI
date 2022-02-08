@@ -38,11 +38,11 @@ class Maximize {
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.padding(5.dp).clickable {
 
-                    if(windowState.placement == WindowPlacement.Maximized) {
-                        windowState.placement = WindowPlacement.Floating
-                    } else {
-                        windowState.placement = WindowPlacement.Maximized
-                    }
+//                    if(windowState.placement == WindowPlacement.Maximized) {
+//                        windowState.placement = WindowPlacement.Floating
+//                    } else {
+//                        windowState.placement = WindowPlacement.Maximized
+//                    }
 
                 }
             )
