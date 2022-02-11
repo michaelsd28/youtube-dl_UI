@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 class DownloadRow {
 
@@ -62,7 +63,7 @@ class DownloadRow {
                     )
                     videoStateInit.value.speed.let {
                         Text(
-                            text = it.value, color = Color(0xFFFFFFFF), modifier = Modifier.weight(1f)
+                            text = it.value, color = Color(0xFFFFFFFF) , fontSize = 13.sp, modifier = Modifier.weight(1f)
                         )
                     }
                     Box(modifier = Modifier.weight(1f).padding(start = 28.dp)) {
