@@ -15,7 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import components.VideoLink.Download
 import components.VideoLink.InputText
-import components.VideoLink.Settings
+import components.VideoLink.SettingsButton
+
 import components.VideoLink.Title
 
 
@@ -25,7 +26,8 @@ class App {
     @Preview
     fun AppComponent(
         urlState: MutableState<TextFieldValue>,
-        queueList: MutableList<DownloadQueue>
+        queueList: MutableList<DownloadQueue>,
+        isSettingsOpen: MutableState<Boolean>
     ) {
 
         Row(
@@ -37,7 +39,7 @@ class App {
             ) {
                 Row {
                     Title().TitleTextInput()
-                    Settings().settingsButton()
+                    SettingsButton().settingsButton(isSettingsOpen)
                 }
 
                 Row {

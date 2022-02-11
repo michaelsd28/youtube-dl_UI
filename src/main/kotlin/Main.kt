@@ -2,7 +2,6 @@
 import `Data Structure`.DownloadQueue
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,14 +19,15 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import components.App
+import components.Settings.Settings
 import components.TopBar.TopBar
-import kotlin.math.round
 
 val windowBorderShape = RoundedCornerShape(4.dp)
 val windowBorderStroke = BorderStroke(1.dp, Color.Black.copy(alpha = 0.2f))
 val windowModifier = Modifier.fillMaxHeight()
 
 fun main() = application {
+    val isSettingsOpen = remember { mutableStateOf(false) }
     val textState = remember { mutableStateOf(TextFieldValue()) }
     val windowState = rememberWindowState(isMinimized = false)
     val queueList = remember { mutableStateListOf<DownloadQueue>() }
@@ -63,7 +63,10 @@ fun main() = application {
                     TopBar().TopBar(windowState)
                 }
 
-                    App().AppComponent(textState,queueList)
+                    App().AppComponent(textState,queueList,isSettingsOpen)
+                if (isSettingsOpen.value) {
+                    Settings().SettingsWindow(isSettingsOpen)
+                }
 
 
 

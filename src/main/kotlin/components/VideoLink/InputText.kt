@@ -46,8 +46,6 @@ class InputText {
             OutlinedTextField(
                 /* outline border*/
 
-
-
                 value = textState.value,
                 onValueChange = { textState.value = it },
                 placeholder = { Text("Enter your link here", fontSize = 13.sp) },
@@ -72,7 +70,7 @@ class InputText {
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier,
 
-                        ){
+                        ) {
                         Icon(
 
                             imageVector = Icons.Default.Add,
@@ -83,10 +81,11 @@ class InputText {
 //                                paste text
 
                                 try {
-                                    val textClipBoard = Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor)
+                                    val textClipBoard = Toolkit.getDefaultToolkit().getSystemClipboard()
+                                        .getData(DataFlavor.stringFlavor)
                                     textState.value = TextFieldValue(textClipBoard.toString())
-                                } catch (e:Exception){
-                                    val frame:Frame = Frame()
+                                } catch (e: Exception) {
+                                    val frame: Frame = Frame()
                                     JOptionPane.showMessageDialog(frame, "You need to copy a valid link");
                                 }
 
