@@ -25,10 +25,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowState
+import java.io.File
 import kotlin.system.exitProcess
 
 
 class Settings {
+
+
+
+
+
+
+
+
 
 
     @Composable
@@ -73,14 +82,19 @@ class Settings {
 
 
 @Composable
-fun cardBody(isSettingsOpen: MutableState<Boolean>) {
+fun cardBody(isSettingsOpen: MutableState<Boolean>, filesLocation: String) {
 
 
     Card (backgroundColor = Color.LightGray, modifier = Modifier.size(500.dp, 300.dp)) {
 
-        val  textFieldSettings = remember { mutableStateOf(TextFieldValue()) }
+
+        val filesSettingsValue = File("C:\\Users\\rd28\\Documents\\" +
+                "Coding\\Exe\\youtube-dl_UI\\app\\resources\\settings.txt")
+        val statePath = remember { mutableStateOf(filesSettingsValue.readText()) }
 
 
+
+        val textFieldSettings = remember { mutableStateOf(TextFieldValue("${statePath.value}")) }
 
 
         WindowTitle()
@@ -89,8 +103,14 @@ fun cardBody(isSettingsOpen: MutableState<Boolean>) {
 
                 OutlinedTextField(
                     value = textFieldSettings.value,
-                    onValueChange = {  },
-                    placeholder = { Text("Enter your link here", fontSize = 13.sp) },
+                    onValueChange = {
+
+                        textFieldSettings.value = it
+
+
+
+                                    },
+                    placeholder = { Text("enter the location here", fontSize = 13.sp) },
                     textStyle = TextStyle(fontSize = 13.sp),
                     modifier = Modifier.width(400.dp).height(60.dp),
                     colors = TextFieldDefaults.textFieldColors(
@@ -101,13 +121,20 @@ fun cardBody(isSettingsOpen: MutableState<Boolean>) {
                         )
                 )
                 Box(Modifier.offset(x = 5.dp, y = 5.dp)){
-                    IconButton({}){
+                    IconButton({
+
+                        val newData = File("C:\\Users\\rd28\\Documents\\Coding\\Exe\\youtube-dl_UI\\app\\resources\\settings.txt")
+                        newData.writeText(textFieldSettings.value.text)
+
+
+
+                        isSettingsOpen.value = !isSettingsOpen.value
+
+                    }){
                         Icon(
                             imageVector = Icons.Default.Settings,
                             contentDescription = "Search",
                             modifier = Modifier.size(30.dp)
-
-
                         )
 
                     }
@@ -134,7 +161,11 @@ fun cardBody(isSettingsOpen: MutableState<Boolean>) {
 
     @Composable
     @Preview
-    fun SettingsWindow(isSettingsOpen: MutableState<Boolean>) {
+    fun SettingsWindow(
+        isSettingsOpen: MutableState<Boolean>,
+        filesLocation: String,
+
+    ) {
 
         val windowState = remember { WindowState( isMinimized = false, size = DpSize(503.dp, 303.dp)) }
 
@@ -157,7 +188,7 @@ fun cardBody(isSettingsOpen: MutableState<Boolean>) {
 
             WindowDraggableArea {
 
-                cardBody(isSettingsOpen)
+                cardBody(isSettingsOpen,filesLocation)
 
 
 

@@ -27,7 +27,8 @@ class App {
     fun AppComponent(
         urlState: MutableState<TextFieldValue>,
         queueList: MutableList<DownloadQueue>,
-        isSettingsOpen: MutableState<Boolean>
+        isSettingsOpen: MutableState<Boolean>,
+        filesPath: String
     ) {
 
         Row(
@@ -47,7 +48,7 @@ class App {
                     Download().DownloadButton(queueList,urlState)
                 }
 
-                TableQueue().downloadQueueBody( queueList)
+                TableQueue().downloadQueueBody( queueList,filesPath)
 
 
             }

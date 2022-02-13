@@ -16,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.WindowState
 import java.io.BufferedReader
+import java.io.File
 import java.io.InputStreamReader
 import kotlin.system.exitProcess
 
@@ -46,9 +47,13 @@ class Minimize {
 }
 
 
+fun main() {
 
 
-
+    val file = File("C:\\Users\\rd28\\Documents\\Coding\\Exe\\youtube-dl_UI\\app\\resources\\settings.txt")
+        file.writeText("klk")
+    println(file.readText())
+}
 
 
 

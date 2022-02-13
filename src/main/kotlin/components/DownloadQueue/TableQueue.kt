@@ -10,7 +10,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import components.DownloadQueue.DownloadRow
 import components.DownloadQueue.OpenFolder
@@ -21,7 +20,7 @@ class TableQueue {
 
     @Composable
     @Preview
-    fun downloadQueueBody(queueList: MutableList<DownloadQueue>) {
+    fun downloadQueueBody(queueList: MutableList<DownloadQueue>, filesPath: String) {
 
 
         val stateVertical = rememberScrollState(0)
@@ -39,7 +38,7 @@ class TableQueue {
                 Column(Modifier.verticalScroll(stateVertical)) {
 
                     queueList.forEach {
-                        DownloadRow().downloadRow(it.url)
+                        DownloadRow().downloadRow(it.url, filesPath)
 
                     }
                 }

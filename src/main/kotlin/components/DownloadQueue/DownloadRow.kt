@@ -8,7 +8,6 @@ import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -24,6 +23,7 @@ class DownloadRow {
     @Preview
     fun downloadRow(
         urlState: String,
+        filesPath: String,
     ) {
 
 
@@ -45,7 +45,7 @@ class DownloadRow {
 
 
 
-        TerminalCommands().downloadVideo(urlState, videoStateInit)
+        TerminalCommands().downloadVideo(urlState, videoStateInit,filesPath)
 //        TerminalCommands().downloadSimulation(videoStateInit)
 
 

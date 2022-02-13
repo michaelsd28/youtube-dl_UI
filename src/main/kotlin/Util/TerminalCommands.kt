@@ -57,7 +57,7 @@ class TerminalCommands {
 
     }
 
-    fun downloadVideo(videoURL: String, videoState: MutableState<DownloadQueue>) {
+    fun downloadVideo(videoURL: String, videoState: MutableState<DownloadQueue>,filesLocation: String) {
 
 
         println("$videoURL this the video url and video state is: ")
@@ -70,7 +70,7 @@ class TerminalCommands {
                 var isRemaining = false
                 var isSpeed = false
 
-                val commands = arrayOf("wsl", "-d", "Ubuntu", "bash", "-c", "youtube-dl $videoURL")
+                val commands = arrayOf( "cmd","/c","youtube-dl $videoURL -o $filesLocation\\%(title)s.%(ext)s ")
                 val proc = rt.exec(commands)
 
 
